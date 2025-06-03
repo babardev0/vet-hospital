@@ -1,0 +1,37 @@
+<mat-toolbar color="primary" class="header">
+  <div class="header-container">
+    <div class="logo-container">
+      <a routerLink="/" class="logo">
+        <img src="assets/images/logo.png" alt="Vet Marketplace Logo">
+      </a>
+    </div>
+
+    <button mat-icon-button [matMenuTriggerFor]="menu" class="mobile-menu-button">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <mat-menu #menu="matMenu">
+      <ng-container *ngFor="let item of navigationItems">
+        <a mat-menu-item [routerLink]="item.path" routerLinkActive="active">
+          {{ item.label | translate }}
+        </a>
+      </ng-container>
+    </mat-menu>
+
+    <nav class="desktop-nav">
+      <ng-container *ngFor="let item of navigationItems">
+        <a mat-button [routerLink]="item.path" routerLinkActive="active">
+          {{ item.label | translate }}
+        </a>
+      </ng-container>
+    </nav>
+
+    <div class="language-selector">
+      <mat-select [value]="translate.currentLang" (selectionChange)="changeLanguage($event.value)">
+        <mat-option *ngFor="let lang of languages" [value]="lang.code">
+          {{ lang.name }}
+        </mat-option>
+      </mat-select>
+    </div>
+  </div>
+</mat-toolbar> 
