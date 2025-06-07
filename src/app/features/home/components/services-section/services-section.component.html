@@ -1,0 +1,20 @@
+<div class="services-section">
+  <div class="section-header">
+    <h2>{{ 'OUR_SERVICES' | translate }}</h2>
+    <p>{{ 'OUR_SERVICES_DESC' | translate }}</p>
+  </div>
+
+  <div class="services-grid">
+    <mat-card *ngFor="let service of services" class="service-card" [routerLink]="service.route">
+      <mat-card-content>
+        <mat-icon class="service-icon">{{ service.icon }}</mat-icon>
+        <h3>{{ service.title | translate }}</h3>
+        <p>{{ service.description | translate }}</p>
+        <button mat-button color="primary" class="learn-more">
+          {{ 'LEARN_MORE' | translate }}
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div> 

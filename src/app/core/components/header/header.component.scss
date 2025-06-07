@@ -4,8 +4,8 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #2c3e50;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .header-container {
@@ -33,6 +33,7 @@
 
 .mobile-menu-button {
   display: none;
+  color: white;
 }
 
 .desktop-nav {
@@ -42,19 +43,20 @@
 
   a {
     text-decoration: none;
-    color: #333;
+    color: rgba(255, 255, 255, 0.9);
     font-weight: 500;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    transition: background-color 0.3s;
+    transition: all 0.3s ease;
 
     &:hover {
-      background-color: rgba(0, 0, 0, 0.04);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: white;
     }
 
     &.active {
-      color: #1976d2;
-      background-color: rgba(25, 118, 210, 0.08);
+      color: white;
+      background-color: rgba(255, 255, 255, 0.15);
     }
   }
 }
@@ -62,8 +64,13 @@
 .language-selector {
   margin-left: 1rem;
 
-  ::ng-deep .mat-select-value {
-    color: #333;
+  ::ng-deep {
+    .mat-select-value {
+      color: white;
+    }
+    .mat-select-arrow {
+      color: white;
+    }
   }
 }
 

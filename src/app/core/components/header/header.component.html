@@ -2,7 +2,7 @@
   <div class="header-container">
     <div class="logo-container">
       <a routerLink="/" class="logo">
-        <img src="assets/images/logo.png" alt="Vet Marketplace Logo">
+        <img src="assets/images/vet logo.png" alt="Vet Marketplace Logo">
       </a>
     </div>
 
@@ -27,11 +27,7 @@
     </nav>
 
     <div class="language-selector">
-      <mat-select [value]="translate.currentLang" (selectionChange)="changeLanguage($event.value)">
-        <mat-option *ngFor="let lang of languages" [value]="lang.code">
-          {{ lang.name }}
-        </mat-option>
-      </mat-select>
+      <app-language-selector></app-language-selector>
     </div>
   </div>
 </mat-toolbar> 

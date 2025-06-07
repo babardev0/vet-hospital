@@ -1,12 +1,32 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { TranslateModule } from '@ngx-translate/core';
+import { HeaderComponent } from './core/components/header/header.component';
+import { FooterComponent } from './core/components/footer/footer.component';
+import { LoadingComponent } from './core/components/loading/loading.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    TranslateModule,
+    HeaderComponent,
+    FooterComponent,
+    LoadingComponent
+  ]
 })
 export class AppComponent {
-  title = 'vet-marketplace';
+  isLoading = true;
+
+  constructor() {
+    // Simulate loading time
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
+  }
 }

@@ -1,17 +1,30 @@
 import { Component, OnInit } from '@angular/core';
-import { TranslateService } from '@ngx-translate/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
+  standalone: true,
+  imports: [
+    CommonModule,
+    RouterModule,
+    TranslateModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatIconModule,
+    MatMenuModule,
+    LanguageSelectorComponent
+  ]
 })
 export class HeaderComponent implements OnInit {
-  languages = [
-    { code: 'en', name: 'English' },
-    { code: 'ur', name: 'اردو' }
-  ];
-
   navigationItems = [
     { path: '/', label: 'HOME' },
     { path: '/about', label: 'ABOUT' },
@@ -24,11 +37,7 @@ export class HeaderComponent implements OnInit {
     { path: '/contact', label: 'CONTACT' }
   ];
 
-  constructor(private translate: TranslateService) {}
+  constructor(public translate: TranslateService) {}
 
   ngOnInit(): void {}
-
-  changeLanguage(langCode: string): void {
-    this.translate.use(langCode);
-  }
 } 
