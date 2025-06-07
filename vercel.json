@@ -1,0 +1,23 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "dist/vet-marketplace/server/main.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "dist/vet-marketplace/browser/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/assets/(.*)",
+      "dest": "/assets/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/dist/vet-marketplace/server/main.js"
+    }
+  ]
+} 
