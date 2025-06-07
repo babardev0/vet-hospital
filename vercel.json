@@ -13,7 +13,11 @@
   "routes": [
     {
       "src": "/assets/(.*)",
-      "dest": "/assets/$1"
+      "dest": "/dist/vet-marketplace/browser/assets/$1"
+    },
+    {
+      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|svg|json))",
+      "dest": "/dist/vet-marketplace/browser/$1"
     },
     {
       "src": "/(.*)",

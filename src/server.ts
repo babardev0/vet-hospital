@@ -38,15 +38,44 @@ app.use(
 );
 
 /**
+ * Serve assets with proper caching
+ */
+app.use('/assets', express.static(resolve(browserDistFolder, 'assets'), {
+  maxAge: '1y',
+  etag: true,
+  lastModified: true,
+}));
+
+/**
  * Handle all other requests by rendering the Angular application.
  */
 app.use('/**', (req, res, next) => {
+  // Skip static file requests
+  if (req.path.match(/\.(js|css|ico|png|jpg|jpeg|svg|json)$/)) {
+    return next();
+  }
+
   angularApp
     .handle(req)
-    .then((response) =>
-      response ? writeResponseToNodeResponse(response, res) : next(),
-    )
-    .catch(next);
+    .then((response) => {
+      if (response) {
+        writeResponseToNodeResponse(response, res);
+      } else {
+        next();
+      }
+    })
+    .catch((err) => {
+      console.error('Error handling request:', err);
+      next(err);
+    });
+});
+
+/**
+ * Error handling middleware
+ */
+app.use((err: any, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  console.error('Server error:', err);
+  res.status(500).send('Internal Server Error');
 });
 
 /**
