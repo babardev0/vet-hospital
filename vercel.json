@@ -1,27 +1,20 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "dist/vet-marketplace/server/main.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "dist/vet-marketplace/browser/**",
-      "use": "@vercel/static"
-    }
-  ],
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist/vet-marketplace/browser",
+  "framework": "angular",
   "routes": [
     {
       "src": "/assets/(.*)",
-      "dest": "/dist/vet-marketplace/browser/assets/$1"
+      "dest": "/assets/$1"
     },
     {
       "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|svg|json))",
-      "dest": "/dist/vet-marketplace/browser/$1"
+      "dest": "/$1"
     },
     {
       "src": "/(.*)",
-      "dest": "/dist/vet-marketplace/server/main.js"
+      "dest": "/server"
     }
   ]
 } 
