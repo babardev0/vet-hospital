@@ -38,6 +38,15 @@ app.use(
 );
 
 /**
+ * Serve i18n files with proper caching
+ */
+app.use('/assets/i18n', express.static(resolve(browserDistFolder, 'assets/i18n'), {
+  maxAge: '1y',
+  etag: true,
+  lastModified: true,
+}));
+
+/**
  * Serve assets with proper caching
  */
 app.use('/assets', express.static(resolve(browserDistFolder, 'assets'), {
