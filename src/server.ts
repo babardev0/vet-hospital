@@ -7,6 +7,7 @@ import {
 import express from 'express';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import fs from 'fs';
 
 const serverDistFolder = dirname(fileURLToPath(import.meta.url));
 const browserDistFolder = resolve(serverDistFolder, '../browser');
@@ -45,6 +46,28 @@ app.use('/assets/i18n', express.static(resolve(browserDistFolder, 'assets/i18n')
   etag: true,
   lastModified: true,
 }));
+
+/**
+ * Handle i18n file requests during SSR
+ */
+app.get('/assets/i18n/:lang.json', (req, res, next) => {
+  const lang = req.params.lang;
+  const filePath = resolve(browserDistFolder, 'assets/i18n', `${lang}.json`);
+  
+  try {
+    if (fs.existsSync(filePath)) {
+      const content = fs.readFileSync(filePath, 'utf8');
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Cache-Control', 'public, max-age=31536000, immutable');
+      res.send(content);
+    } else {
+      next();
+    }
+  } catch (error) {
+    console.error(`Error serving i18n file for ${lang}:`, error);
+    next(error);
+  }
+});
 
 /**
  * Serve assets with proper caching
