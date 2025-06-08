@@ -6,6 +6,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 import { LanguageSelectorComponent } from '../language-selector/language-selector.component';
 
 @Component({
@@ -21,20 +22,20 @@ import { LanguageSelectorComponent } from '../language-selector/language-selecto
     MatButtonModule,
     MatIconModule,
     MatMenuModule,
+    MatDividerModule,
     LanguageSelectorComponent
   ]
 })
 export class HeaderComponent implements OnInit {
   navigationItems = [
-    { path: '/', label: 'HOME' },
-    { path: '/about', label: 'ABOUT' },
-    { path: '/experts', label: 'OUR_EXPERTS' },
-    { path: '/services', label: 'SERVICES' },
-    { path: '/farm-support', label: 'FARM_SUPPORT' },
-    { path: '/emergency', label: 'EMERGENCY' },
-    { path: '/store', label: 'STORE' },
-    { path: '/blog', label: 'BLOG' },
-    { path: '/contact', label: 'CONTACT' }
+    { path: '/', label: 'HOME', icon: 'home' },
+    { path: '/experts', label: 'OUR_EXPERTS', icon: 'people' },
+    { path: '/services', label: 'SERVICES', icon: 'medical_services' },
+    { path: '/farm-support', label: 'FARM_SUPPORT', icon: 'agriculture' },
+    { path: '/emergency', label: 'EMERGENCY', icon: 'emergency' },
+    { path: '/store', label: 'STORE', icon: 'shopping_cart' },
+    { path: '/blog', label: 'BLOG', icon: 'article' },
+    { path: '/contact', label: 'CONTACT', icon: 'contact_mail' }
   ];
 
   constructor(public translate: TranslateService) {}

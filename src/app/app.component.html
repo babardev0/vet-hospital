@@ -178,14 +178,9 @@
 </style>
 
 <app-loading *ngIf="isLoading"></app-loading>
-
-<div class="app-container" *ngIf="!isLoading">
-  <app-header></app-header>
-  <main class="main-content">
-    <router-outlet></router-outlet>
-  </main>
-  <app-footer></app-footer>
-  </div>
+<app-layout *ngIf="!isLoading">
+  <router-outlet></router-outlet>
+</app-layout>
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->

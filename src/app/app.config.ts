@@ -6,6 +6,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { TranslateModule } from '@ngx-translate/core';
 import { routes } from './app.routes';
 import { TranslationsService } from './core/services/translations.service';
+import { provideStore } from '@ngrx/store';
+import { provideEffects } from '@ngrx/effects';
+import { provideRouterStore } from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +17,9 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(),
     provideAnimations(),
+    provideStore(),
+    provideEffects(),
+    provideRouterStore(),
     importProvidersFrom(
       TranslateModule.forRoot({
         defaultLanguage: 'en',
